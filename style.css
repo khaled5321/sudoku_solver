@@ -6,7 +6,7 @@
 }
 
 .cell{
-    border:1px solid;
+    height:25px;
     width:25px;
     margin:1px; 
     box-sizing: border-box;
@@ -32,3 +32,9 @@ td:first-child {
   tr:nth-child(3n) td {
     border-bottom:solid ;
   }
+
+.button{
+    width:60px;
+    margin: 20px 10px auto 10px;
+    background-color: aquamarine;
+}
