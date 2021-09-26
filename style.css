@@ -1,26 +1,34 @@
-.game{
-    display:grid;
-    position:absolute;
-    gap:1rem;
-    grid-template-columns: repeat(auto-fit,1rem);    
+.board{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    border-collapse: collapse;
 }
 
 .cell{
-    position:relative;
-    width:30px;
+    border:1px solid;
+    width:25px;
     margin:1px; 
     box-sizing: border-box;
     text-align: center;
+    font-size:18px;
     background-color: rgb(170, 221, 223);
     color: red;
 }
 
 .row{
-    display:block;
-    gap:1rem;
-    position: relative;
-    border:1px solid;
-    left: 50%;
-    transform: translate(-50%);
     background-color:rgb(231, 213, 213);
 }
+
+td:first-child {
+    border-left:solid;
+  }
+  td:nth-child(3n) {
+    border-right:solid ;
+  }
+  tr:first-child {
+    border-top:solid;
+  }
+  tr:nth-child(3n) td {
+    border-bottom:solid ;
+  }
