@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sodoku solver</title>
+    <style>
+      @import url("./style.css");
+    </style>
+  </head>
+  <body style="background-color: wheat">
+    <main>
+      <h1 style="text-align: center">Sodoku solver</h1>
+      <p>
+        This solver uses Peter Norvig's constant satisfaction and search
+        algorthims approach <a href="#">here</a>. please enter a correct puzzle
+        below for the solver to work correctly.
+      </p>
+      <br />
+      <div id="board" class="board">
+        <div class="row">
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+        </div>
+
+        <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+          <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+          <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+          <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+          <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+          <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+          <div class="row">
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+            <input class="cell" type="text" maxlength="1" />
+          </div>
+
+       <div class="row">
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+          <input class="cell" type="text" maxlength="1" />
+        </div>
+        
+      </div>
+    </main>
+  </body>
+</html>
