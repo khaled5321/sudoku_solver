@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sodoku solver</title>
-    <style>
-      @import url("./style.css");
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body style="background-color: wheat">
     <main>
@@ -127,11 +125,12 @@
           <td><input class="cell" type="text" maxlength="1" /></td>
         </tr>
       </table>
-      <div style="position:absolute; left:50%; transform:translate(-50%);">
-      <button id="solve" class="button" title="solve" style="margin-right:16px;">Solve</button>
-      <button id="reset" class="button" title="reset">Reset</button>
+      <div style="display: flex; justify-content: center">
+        <button id="solve" class="button" style="margin-right: 16px">
+          Solve
+        </button>
+        <button id="reset" class="button">Reset</button>
       </div>
-      
     </main>
   </body>
 </html>

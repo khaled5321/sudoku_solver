@@ -1,3 +1,7 @@
+:root{
+  --color:black;
+}
+
 .board {
   position: relative;
   left: 50%;
@@ -12,8 +16,8 @@
   box-sizing: border-box;
   text-align: center;
   font-size: 18px;
-  background-color: rgb(170, 221, 223);
-  color: red;
+  background-color: hsl(0, 2%, 95%);
+  color: black;
 }
 
 .row {
@@ -21,16 +25,16 @@
 }
 
 td:first-child {
-  border-left: solid;
+  border-left: solid hsl(0, 0%, 42%);
 }
 td:nth-child(3n) {
-  border-right: solid;
+  border-right: solid hsl(0, 0%, 42%);
 }
 tr:first-child {
-  border-top: solid;
+  border-top: solid hsl(0, 0%, 42%);
 }
 tr:nth-child(3n) td {
-  border-bottom: solid;
+  border-bottom: solid rgb(121, 120, 120);
 }
 /* this button style from https://fdossena.com/?p=html5cool/buttons/i.frag*/
 .button {
