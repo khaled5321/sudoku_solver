@@ -31,7 +31,7 @@ def get_puzzle():
     puzzle=[x if x else "0" for x in variables]
     #check if the board is empty, then return error message to the user, else return the solution
     if all(v == "0" for v in puzzle):
-        return render_template('index.html',message="please enter a correct puzzle")
+        return render_template('index.html',message="Please enter a correct puzzle")
     else:
         solution,message=solve_puzzle((''.join(puzzle)))
         
