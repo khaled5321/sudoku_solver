@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sodoku solver</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
+  </head>
+  <body style="background-color: wheat">
+    <main>
+      <h1 style="text-align: center">Sodoku solver</h1>
+      <p style="font-size: 18px;">
+        This solver uses Peter Norvig's constraint propagation and search
+        approach <a href="http://norvig.com/sudoku.html" target="_blank">here</a>. You can check sodoku rules <a href="https://sudoku.com/how-to-play/sudoku-rules-for-complete-beginners/">here</a>
+      </p>
+      <form  action="/results" method="POST">
+      <table id="board" class="board">
+        <caption>
+          <p style="width: clamp(30ch, 50%, 70ch); text-align: center;">
+          {{message}}
+        </p>
+      </caption>
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>
+
+        <tr class="row">
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+          <td><input class="cell" pattern="[1-9]" oninvalid="this.setCustomValidity('please enter only numbers (1-9)')" oninput="this.setCustomValidity('')" type="text" maxlength="1" name="variable"/></td>
+        </tr>          
+      </table>
+      <div style="display: flex; justify-content: center">
+        <button type="submit" class="button" style="margin-right: 16px">
+        Solve
+        </button>
+      </form>
+        <button type="button" class="button" onclick="location.href='/'">Reset</button>
+      </div>
+    </main>
+  </body>
+</html>
