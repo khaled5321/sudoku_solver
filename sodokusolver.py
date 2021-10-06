@@ -21,7 +21,7 @@ peers = dict(
 
 
 class Solver:
-    #!likely to change
+    
     def grid_values(self, grid):
         "Convert grid into a dict of {square: char} with '0' or '.' for empties."
         chars = [char for char in grid if char in digits or char in '0.']
@@ -35,7 +35,7 @@ class Solver:
         values = dict((square, digits) for square in squares)
         for s, d in self.grid_values(grid).items():
             if d in digits and not self.assign(values, s, d):
-                #!likely to change
+                
                 return False  # (Fail if we can't assign d to square s.)
         return values
 
