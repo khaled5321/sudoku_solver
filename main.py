@@ -37,6 +37,6 @@ def get_puzzle():
         
         return render_template('results.html',message=message,puzzle=list(solution))
 
-app.run(debug=True)
+
 
 
